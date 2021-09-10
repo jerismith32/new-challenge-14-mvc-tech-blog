@@ -16,12 +16,14 @@ checkPassword(loginPw) {
 //They will be assigned a unique id within our database
 User.init(
   {
+    //Creates id for each user (saved in database)
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
+    //Username
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,6 +33,7 @@ User.init(
           }
       }
     },
+    //User email
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -39,6 +42,7 @@ User.init(
         isEmail: true
       }
     },
+    //User password
     password: {
       type: DataTypes.STRING,
       allowNull: false,

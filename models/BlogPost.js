@@ -6,12 +6,14 @@ class BlogPost extends Model {}
 
 BlogPost.init(
     {
+        //Creates id for each blogpost (saved in database)
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
+        //Blog Post Title, can't be left blank
         blog_title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -21,6 +23,7 @@ BlogPost.init(
                 }
             }
         },
+        //Body of the blog post, must be at least 1, aka can't be left blank
         blog_body: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -28,6 +31,7 @@ BlogPost.init(
                 len: [1]
             }
         },
+        //User id for the user posting the blog post
         user_id: {
             type: DataTypes.INTEGER,
             references: {
