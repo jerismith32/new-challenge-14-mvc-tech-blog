@@ -29,10 +29,10 @@ Comment.init(
         }
       },
       //blog post id for the blog that the user is commenting on
-      blogpost_id: {
+      Blogpost_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'blogpost',
+          model: 'Blogpost',
           key: 'id'
         }
       }

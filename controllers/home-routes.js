@@ -3,12 +3,12 @@ const { post } = require('.');
 //connects to the connection.js file in the config directory
 const sequelize = require('../config/connection');
 //Pulls in our models
-const { User, BlogPost, Comment } = require('../models');
+const { User, Blogpost, Comment } = require('../models');
 
 //We want to get all the blog posts for the homepage
 router.get('/', (req, res) => {
     //Finds all Blog posts and includes blog title and blog body
-    BlogPost.findAll({
+    Blogpost.findAll({
         attributes: [
             'blog_title',
             'blog_body'

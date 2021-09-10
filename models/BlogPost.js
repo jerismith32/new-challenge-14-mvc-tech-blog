@@ -2,11 +2,11 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-class BlogPost extends Model {}
+class Blogpost extends Model {}
 
-BlogPost.init(
+Blogpost.init(
     {
-        //Creates id for each blogpost (saved in database)
+        //Creates id for each Blogpost (saved in database)
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -17,11 +17,11 @@ BlogPost.init(
         blog_title: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: {
-                    msg: 'Please enter the title for your blog post!'
-                }
-            }
+            // validate: {
+            //     notNull: {
+            //         msg: 'Please enter the title for your blog post!'
+            //     }
+            // }
         },
         //Body of the blog post, must be at least 1, aka can't be left blank
         blog_body: {
@@ -48,4 +48,4 @@ BlogPost.init(
     }
 );
 
-module.exports = BlogPost;
+module.exports = Blogpost;

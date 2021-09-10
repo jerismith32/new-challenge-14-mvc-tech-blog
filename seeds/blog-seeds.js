@@ -1,6 +1,6 @@
-const { BlogPost } = require('../models');
+const { Blogpost } = require('../models');
 
-const blogpostSeedData = [
+const blogdata = [
     {
         blog_title: 'Why You Should Visit Disney World',
         blog_body: 'It is where dreams come true! AND makes the perfect family vacation spot!',
@@ -18,6 +18,6 @@ const blogpostSeedData = [
     }
 ];
 
-const seedBlogPosts = () => BlogPost.bulkCreate(blogpostSeedData);
+const seedBlogs = () => Blogpost.bulkCreate(blogdata);
 
-module.exports = seedBlogPosts;
+module.exports = seedBlogs;

@@ -1,6 +1,6 @@
 const { Comment } = require('../models');
 
-const commentSeedData = [
+const commentdata = [
     {
         comment_body: 'I will definitely be attending the celebrations!',
         user_id: 2,
@@ -18,6 +18,6 @@ const commentSeedData = [
     }
 ];
 
-const seedComments = () => Comment.bulkCreate(commentSeedData);
+const seedComments = () => Comment.bulkCreate(commentdata);
 
 module.exports = seedComments;
