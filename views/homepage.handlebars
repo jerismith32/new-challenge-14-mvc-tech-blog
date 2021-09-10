@@ -1,0 +1,9 @@
+<h1>WELCOME TO THE MVC TECH BLOG HOMEPAGE</h1>
+
+<ol class="blog_inventory">
+  {{#each blogs as |blog|}}
+  <li>
+    {{> blog-info blog }}
+  </li>
+  {{/each}}
+</ol>
