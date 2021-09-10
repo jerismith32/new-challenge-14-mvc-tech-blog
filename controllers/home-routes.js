@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     //Finds all Blog posts and includes blog title and blog body
     Blogpost.findAll({
         attributes: [
+            'id',
             'blog_title',
             'blog_body'
         ],
@@ -21,10 +22,7 @@ router.get('/', (req, res) => {
             //Includes any comments on the blog post
             {
                 model: Comment,
-                attributes: 
-                [
-                    'comment_body'
-                ],
+                attributes: [ 'comment_body'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -32,10 +30,10 @@ router.get('/', (req, res) => {
             }
         ]
     })
-    .then(dbPostData => {
-        const blogs = dbPostData.map(post => post.get({ plain: true }));
+    .then(dbBlogpostData => {
+        const blogs = dbBlogpostData.map(Blogpost => Blogpost.get({ plain: true }));
   
-        console.log("Blogspost from the home-routes", blogs);
+        console.log("Blogposts from the home-routes", blogs);
 
         res.render('homepage', {
           blogs,
@@ -47,3 +45,6 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
 });
+
+//Exports router
+module.exports = router;
