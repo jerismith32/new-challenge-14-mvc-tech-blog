@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { post } = require('.');
 //connects to the connection.js file in the config directory
 const sequelize = require('../config/connection');
 //Pulls in our models
@@ -33,4 +32,18 @@ router.get('/', (req, res) => {
             }
         ]
     })
-})
+    .then(dbPostData => {
+        const blogs = dbPostData.map(post => post.get({ plain: true }));
+  
+        console.log("Blogspost from the home-routes", blogs);
+
+        res.render('homepage', {
+          blogs,
+          loggedIn: req.session.loggedIn
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
