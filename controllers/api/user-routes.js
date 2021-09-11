@@ -65,6 +65,42 @@ router.get('/', (req, res) => {
         console.log(err);
         res.status(500).json(err);
       });
-  });
+});
+
+//Route to find a single User (by ID, the ID in our app's database) including all associated posts and comments from that user
+//This will not show the user's password to anyone
+router.get('/:id', (req, res) => {
+    User.findOne({
+      attributes: { exclude: ['password'] },
+      where: {
+        id: req.params.id
+      },
+      include: [
+        {
+          model: Blogpost,
+          attributes: ['id', 'blog_title', 'blog_body']
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_body'],
+          include: {
+            model: Blogpost,
+            attributes: ['blog_title']
+          }
+        },
+      ]
+    })
+      .then(dbUserData => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No user found with this ID!' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
 
 module.exports = router;
