@@ -6,7 +6,8 @@ const { User, Blogpost, Comment } = require('../models');
 //Authentication to check for login/user capability
 const withAuth = require('../utils/auth');
 
-// This will get all Blogposts 
+// This will get all Blogposts with Authentication
+//With Authentication makes sure the user is logged in
 router.get('/', withAuth, (req, res) => {
     // console.log(req.session);
     // console.log('======================');
