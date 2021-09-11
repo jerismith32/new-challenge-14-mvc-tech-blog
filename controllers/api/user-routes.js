@@ -54,6 +54,18 @@ router.post('/login', (req, res) => {
     });
 });
 
+//Allows the User to Logout
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
+    else {
+      res.status(404).end();
+    }
+});
+
 // Route to Find All Users Within the App
 // This will not include the passwords of the users
 router.get('/', (req, res) => {
@@ -103,16 +115,6 @@ router.get('/:id', (req, res) => {
       });
 });
 
-//Allows the User to Logout
-router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
-      req.session.destroy(() => {
-        res.status(204).end();
-      });
-    }
-    else {
-      res.status(404).end();
-    }
-});
+
 
 module.exports = router;
