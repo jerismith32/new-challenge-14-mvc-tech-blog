@@ -6,4 +6,42 @@ const { User, Blogpost, Comment } = require('../models');
 //Authentication to check for login/user capability
 const withAuth = require('../utils/auth');
 
+// This will get all Blogposts 
+router.get('/', withAuth, (req, res) => {
+    console.log(req.session);
+    console.log('======================');
+    Blogpost.findAll({
+      where: {
+        user_id: req.session.user_id
+      },
+      attributes: [
+        'id',
+        'blog_title',
+        'blog_body'
+      ],
+      include: [
+        {
+            model: User,
+            attributes: ['username']
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_body', 'Blogpost_id', 'user_id'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        },
+      ]
+    })
+      .then(dbBlogpostData => {
+        const blogs = dbBlogpostData.map(Blogpost => Blogpost.get({ plain: true }));
+        res.render('Dashboard', { blogs, loggedIn: true });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
 module.exports = router;
