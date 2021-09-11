@@ -1,0 +1,31 @@
+<section>
+  <h2>Start Blogging Today! Create Your Blog Post Here!</h2>
+
+  <form class="new-blog-form">
+    <div>
+      <label for="blog_title">Blog Post Title</label>
+      <input type="text" id="blog_title" name="blog_title" />
+    </div>
+    <div>
+      <label for="blog_body">Blog Post Body</label>
+      <input id="blog_body" name="blog_body" />
+    </div>
+    <button type="submit" class="btn">Create New Blog Post</button>
+  </form>
+</section>
+
+{{#if blogposts.length}}
+<section>
+  <h2>Your Blog Posts</h2>
+  <ol>
+    {{#each blogposts as |blogpost|}}
+    <li>
+      {{> blog-info post}}
+      <a href="/dashboard/edit/{{blogpost.id}}" class="edit-link">Edit Blog Post</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add-post.js"></script>
