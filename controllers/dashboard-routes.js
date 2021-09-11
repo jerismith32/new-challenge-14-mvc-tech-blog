@@ -8,8 +8,8 @@ const withAuth = require('../utils/auth');
 
 // This will get all Blogposts 
 router.get('/', withAuth, (req, res) => {
-    console.log(req.session);
-    console.log('======================');
+    // console.log(req.session);
+    // console.log('======================');
     Blogpost.findAll({
       where: {
         user_id: req.session.user_id
