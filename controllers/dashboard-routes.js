@@ -5,3 +5,5 @@ const sequelize = require('../config/connection');
 const { User, Blogpost, Comment } = require('../models');
 //Authentication to check for login/user capability
 const withAuth = require('../utils/auth');
+
+module.exports = router;
