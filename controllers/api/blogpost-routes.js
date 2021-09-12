@@ -6,7 +6,7 @@ const { User, Blogpost, Comment } = require('../../models');
 //Utilizes our authentication
 const withAuth = require('../../utils/auth');
 
-// Route to find all Posts with their associate Users and Comments
+// Route to find all Blogposts with the Users (who wrote them) and Comments
 router.get('/', (req, res) => {
     //console.log('======================');
     Blogpost.findAll({
@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
       ],
       include: [
         {
-            model: User,
-            attributes: ['username']
+          model: User,
+          attributes: ['username']
         },
         {
           model: Comment,
