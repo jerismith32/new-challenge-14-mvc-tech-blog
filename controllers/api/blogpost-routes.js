@@ -90,4 +90,29 @@ router.post('/', withAuth, (req, res) => {
       });
 });
 
+//Route to Update Blogpost Title
+router.put('/:id', withAuth, (req, res) => {
+    Blogpost.update(
+      {
+        blog_title: req.body.title
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+      .then(dbBlogpostData => {
+        if (!dbBlogpostData) {
+          res.status(404).json({ message: 'There is not a blogpost with this ID!' });
+          return;
+        }
+        res.json(dbBlogpostData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
 module.exports = router;
