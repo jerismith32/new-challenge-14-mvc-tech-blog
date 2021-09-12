@@ -76,4 +76,18 @@ router.get('/:id', (req, res) => {
       });
 });
 
+//Route to create a blogpost
+router.post('/', withAuth, (req, res) => {
+    Blogpost.create({
+      blog_titile: req.body.title,
+      blog_body: req.body.post_body,
+      user_id: req.session.user_id
+    })
+      .then(dbBlogpostData => res.json(dbBlogpostData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
 module.exports = router;
