@@ -37,4 +37,43 @@ router.get('/', (req, res) => {
     });
 });
 
+//Route to find one blogpost by id
+router.get('/:id', (req, res) => {
+    Blogpost.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id',
+        'blog_title',
+        'blog_body' 
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_body', 'blogpost_id', 'user_id'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        },
+      ]
+    })
+      .then(dbBlogpostData => {
+        if (!dbBlogpostData) {
+          res.status(404).json({ message: 'There is not a blogpost with this ID!' });
+          return;
+        }
+        res.json(dbBlogpostData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
 module.exports = router;
