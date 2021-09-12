@@ -79,8 +79,8 @@ router.get('/:id', (req, res) => {
 //Route to create a blogpost
 router.post('/', withAuth, (req, res) => {
     Blogpost.create({
-      blog_titile: req.body.title,
-      blog_body: req.body.post_body,
+      blog_title: req.body.blog_title,
+      blog_body: req.body.blog_body,
       user_id: req.session.user_id
     })
       .then(dbBlogpostData => res.json(dbBlogpostData))
@@ -94,7 +94,7 @@ router.post('/', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
     Blogpost.update(
       {
-        blog_title: req.body.title
+        blog_title: req.body.blog_title
       },
       {
         where: {

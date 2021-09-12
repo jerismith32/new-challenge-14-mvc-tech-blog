@@ -27,7 +27,7 @@ router.get('/', withAuth, (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['id', 'comment_body', 'Blogpost_id', 'user_id'],
+          attributes: ['id', 'comment_body', 'blogpost_id', 'user_id'],
           include: {
             model: User,
             attributes: ['username']
