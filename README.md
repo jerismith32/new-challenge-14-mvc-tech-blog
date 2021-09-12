@@ -95,7 +95,11 @@
   
 
   ## Screenshot
-  ![Screenshot]()
+  ![Homepage](./public/images/Homepage.png)
+  ![Homepage after Login](./public/images/HomepageAfterLogin.png)
+  ![Login](./public/images/Login.png)
+  ![Blank New Post](./public/images/BlankNewPost.png)
+  ![NewBlogpost](./public/images/NewBlogpost.png)
 
   ## Resources
   [Validation and Contraints](https://sequelize.org/master/manual/validations-and-constraints.html)
