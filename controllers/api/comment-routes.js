@@ -28,5 +28,25 @@ router.post('/', withAuth, (req, res) => {
     });
 });
 
+//Route to Delete Comment by ID
+router.delete('/:id', withAuth, (req, res) => {
+    Comment.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbCommentData => {
+        if (!dbCommentData) {
+          res.status(404).json({ message: 'There is not a comment with this ID!' });
+          return;
+        }
+        res.json(dbCommentData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
+
 
 module.exports = router;
