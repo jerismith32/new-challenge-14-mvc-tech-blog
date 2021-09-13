@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
     .then(dbBlogpostData => {
         const blogs = dbBlogpostData.map(Blogpost => Blogpost.get({ plain: true }));
   
-        console.log("Blogposts from the home-routes", blogs);
+        //console.log("Blogposts from the home-routes", blogs);
 
         res.render('homepage', {
           blogs,
