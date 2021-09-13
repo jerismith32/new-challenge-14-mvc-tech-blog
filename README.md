@@ -92,7 +92,7 @@
 
 
   ## Link
-  
+  [Deployed Link (Through Heroku)](https://new-challenge-14-mvc-tech-blog.herokuapp.com/)
 
   ## Screenshot
   ![Homepage](./public/images/Homepage.png)
