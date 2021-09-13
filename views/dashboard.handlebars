@@ -18,9 +18,9 @@
 <section>
   <h2>Your Blog Posts</h2>
   <ol>
-    {{#each blogposts as |blogpost|}}
+    {{#each blogs as |blog|}}
     <li>
-      {{> blog-info post}}
+      {{> blog-info blog}}
       <a href="/dashboard/edit/{{blogpost.id}}" class="edit-link">Edit Blog Post</a>
     </li>
     {{/each}}
